@@ -35,7 +35,7 @@ stages:
           databricks-connect test
         env:
           databricks-token: dapi238b624ec6a89bda46554dd0e6769cb5
-        displayName: 'Configure DBConnect'
+          displayName: 'Configure DBConnect'
 
       # - script: |
       #     databricks fs cp test-proj/pyspark-lib/configs/config.ini dbfs:/configs/test-proj/config.ini

@@ -10,10 +10,14 @@ jobs:
   steps:
   - checkout: self
     fetchDepth: 1
-  - task: configuredatabricks@0
-    # displayName: Configure Databricks CLI
-    inputs:
-      url: $(https://adb-6192355565634015.15.azuredatabricks.net/)
-      token: $(dapi238b624ec6a89bda46554dd0e6769cb5)
-  
+ - script: |
+    pip install pytest requests setuptools wheel
+    pip install -U databricks-cli
+  displayName: 'Load Python Dependencies'
 
+- script: |
+    databricks fs cp ... dbfs:/...
+  env:
+    DATABRICKS_HOST: $(https://adb-6192355565634015.15.azuredatabricks.net/)
+    DATABRICKS_TOKEN: $(dapi238b624ec6a89bda46554dd0e6769cb5)
+  displayName: 'Copy artifacts'

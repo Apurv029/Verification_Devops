@@ -1,0 +1,23 @@
+trigger:
+  branches:
+    include:
+    - refs/heads/master
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - checkout: self
+    fetchDepth: 1
+  - task: configuredatabricks@0
+    displayName: Configure Databricks CLI
+    inputs:
+      url: https://adb-4506298200695366.6.azuredatabricks.net/
+      token: dapi628f63d4be96a9f1abefedacc5d19351
+  - task: deploynotebooks@0
+    displayName: Deploy Notebooks to Workspace
+    inputs:
+      notebooksFolderPath: Notebook
+      workspaceFolder: /ATCS
+...

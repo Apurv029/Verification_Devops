@@ -1,21 +1,39 @@
-trigger:
-  branches:
-    include:
-    - FOR_PIPELINE
-jobs:
-- job: Job_1
-  displayName: Agent job 1
-  pool:
-    vmImage: ubuntu-latest
-  
- - script: |
-    pip install pytest requests setuptools wheel
-    pip install -U databricks-cli
-  displayName: 'Load Python Dependencies'
+stages:
+- stage: MYBuild
+  displayName: "My Build"
+  jobs:
+    - job: BuildwhlAndRunPytest
+      pool:
+        vmImage: 'ubuntu-16.04'
 
-- script: |
-    databricks fs cp ... dbfs:/...
-  env:
-    DATABRICKS_HOST: $(https://adb-6192355565634015.15.azuredatabricks.net/)
-    DATABRICKS_TOKEN: $(dapi238b624ec6a89bda46554dd0e6769cb5)
-  displayName: 'Copy artifacts'
+      steps:
+      - task: UsePythonVersion@0
+        displayName: 'Use Python 3.7'
+        inputs:
+          versionSpec: '3.7'
+          addToPath: true
+          architecture: 'x64'
+
+      - script: |
+          pip install pytest requests setuptools wheel pytest-cov
+          pip install -U databricks-connect==7.3.*
+        displayName: 'Load Python Dependencies'
+
+      - checkout: self
+        persistCredentials: true
+        clean: true
+
+      - script: |
+          echo "y
+          $(https://adb-6192355565634015.15.azuredatabricks.net)
+          $(dapi238b624ec6a89bda46554dd0e6769cb5)
+          $(1014-134316-share404)
+          $(adb-6192355565634015.15.azuredatabricks.net)
+          8787" | databricks-connect configure
+          databricks-connect test
+        env:
+          databricks-token: $(databricks-token)
+        displayName: 'Configure DBConnect'
+
+      - script: |
+          databricks fs cp test-proj/pyspark-lib/configs/config.ini dbfs:/configs/test-proj/config.ini

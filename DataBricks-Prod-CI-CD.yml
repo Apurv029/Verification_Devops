@@ -4,7 +4,7 @@ stages:
   jobs:
     - job: BuildwhlAndRunPytest
       pool:
-        vmImage: 'ubuntu-16.04'
+        vmImage: 'Ubuntu-20.04'
 
       steps:
       - task: UsePythonVersion@0
@@ -32,7 +32,7 @@ stages:
           8787" | databricks-connect configure
           databricks-connect test
         env:
-          databricks-token: $(databricks-token)
+          databricks-token: $(dapi238b624ec6a89bda46554dd0e6769cb5)
         displayName: 'Configure DBConnect'
 
       - script: |

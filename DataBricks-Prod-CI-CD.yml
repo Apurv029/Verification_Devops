@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-    - refs/heads/master
+    - main
 jobs:
 - job: Job_1
   displayName: Agent job 1
@@ -13,11 +13,7 @@ jobs:
   - task: configuredatabricks@0
     displayName: Configure Databricks CLI
     inputs:
-      url: https://adb-4506298200695366.6.azuredatabricks.net/
-      token: dapi628f63d4be96a9f1abefedacc5d19351
-  - task: deploynotebooks@0
-    displayName: Deploy Notebooks to Workspace
-    inputs:
-      notebooksFolderPath: Notebook
-      workspaceFolder: /ATCS
+      url: https://adb-6192355565634015.15.azuredatabricks.net/
+      token: dapi238b624ec6a89bda46554dd0e6769cb5
+  -
 ...

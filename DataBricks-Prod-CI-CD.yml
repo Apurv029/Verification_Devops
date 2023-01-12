@@ -5,6 +5,8 @@ stages:
     - job: BuildwhlAndRunPytest
       pool:
         vmImage: 'Ubuntu-20.04'
+  variables:
+      workingDirectory: '$(System.DefaultWorkingDirectory)/<https://adb-6192355565634015.15.azuredatabricks.net/?o=6192355565634015#folder/1625236476924056>'
 
       steps:
       - task: UsePythonVersion@0
@@ -35,5 +37,5 @@ stages:
           databricks-token: $(dapi238b624ec6a89bda46554dd0e6769cb5)
         displayName: 'Configure DBConnect'
 
-      - script: |
-          databricks fs cp test-proj/pyspark-lib/configs/config.ini dbfs:/configs/test-proj/config.ini
+      # - script: |
+      #     databricks fs cp test-proj/pyspark-lib/configs/config.ini dbfs:/configs/test-proj/config.ini

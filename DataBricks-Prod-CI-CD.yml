@@ -5,8 +5,8 @@ stages:
     - job: BuildwhlAndRunPytest
       pool:
         vmImage: 'Ubuntu-20.04'
-  variables:
-      workingDirectory: '$(System.DefaultWorkingDirectory)/<https://adb-6192355565634015.15.azuredatabricks.net/?o=6192355565634015#folder/1625236476924056>'
+      variables:
+        workingDirectory: '$(System.DefaultWorkingDirectory)/<https://adb-6192355565634015.15.azuredatabricks.net/?o=6192355565634015#folder/1625236476924056>'
 
       steps:
       - task: UsePythonVersion@0

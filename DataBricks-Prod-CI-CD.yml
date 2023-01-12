@@ -13,7 +13,7 @@ jobs:
   - task: configuredatabricks@0
     displayName: Configure Databricks CLI
     inputs:
-      url: https://adb-6192355565634015.15.azuredatabricks.net/
-      token: dapi238b624ec6a89bda46554dd0e6769cb5
+      url: $(https://adb-6192355565634015.15.azuredatabricks.net/)
+      token: $(dapi238b624ec6a89bda46554dd0e6769cb5)
   
 
